@@ -39,6 +39,11 @@ export default class Calculator extends Component {
             try {
                 // Refatorar a linha abaixo para um switch case depois, não usar eval
                 values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`);
+                if(isNaN(values[0] || !isFinite(value[0]))) {
+                    this.setState({current: 0, operation});
+                    this.clearMemory();
+                    return;
+                }
             } catch (e) {
                 values[0] = this.state.values[0];
             } // Try catch, pois eval pode gerar efeitos indesejados
